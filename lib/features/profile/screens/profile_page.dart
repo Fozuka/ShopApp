@@ -11,17 +11,11 @@ class ProfilePage extends StatelessWidget {
       title: 'Профиль',
       child: Column(
         children: [
-          const CircleAvatar(
-            radius: 45,
-            child: Icon(Icons.person, size: 50),
-          ),
+          const CircleAvatar(radius: 45, child: Icon(Icons.person, size: 50)),
           const SizedBox(height: 16),
           const Text(
             'Пользователь',
-            style: TextStyle(
-              fontSize: 24,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           const Text('user@example.com'),

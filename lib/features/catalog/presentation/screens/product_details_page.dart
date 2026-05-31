@@ -1,30 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../cart/presentation/providers/cart_provider.dart';
 import '../providers/catalog_providers.dart';
 
 class ProductDetailsPage extends ConsumerWidget {
   final int productId;
 
-  const ProductDetailsPage({
-    super.key,
-    required this.productId,
-  });
+  const ProductDetailsPage({super.key, required this.productId});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productState = ref.watch(productDetailsProvider(productId));
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Товар'),
-        centerTitle: true,
-      ),
+      appBar: AppBar(title: const Text('Товар'), centerTitle: true),
       body: SafeArea(
         child: productState.when(
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
-          ),
+          loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stackTrace) => _ProductDetailsErrorView(
             onRetry: () {
               ref.invalidate(productDetailsProvider(productId));
@@ -90,7 +83,17 @@ class ProductDetailsPage extends ConsumerWidget {
                   SizedBox(
                     width: double.infinity,
                     child: FilledButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        ref.read(cartProvider.notifier).addProduct(product);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                              '${product.title} добавлен в корзину',
+                            ),
+                            duration: const Duration(seconds: 2),
+                          ),
+                        );
+                      },
                       child: const Text('Добавить в корзину'),
                     ),
                   ),
@@ -107,9 +110,7 @@ class ProductDetailsPage extends ConsumerWidget {
 class _ProductDetailsErrorView extends StatelessWidget {
   final VoidCallback onRetry;
 
-  const _ProductDetailsErrorView({
-    required this.onRetry,
-  });
+  const _ProductDetailsErrorView({required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -120,18 +121,12 @@ class _ProductDetailsErrorView extends StatelessWidget {
         children: [
           const Text(
             'Не удалось загрузить товар',
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 8),
           const Text('Попробуйте обновить страницу.'),
           const SizedBox(height: 16),
-          FilledButton(
-            onPressed: onRetry,
-            child: const Text('Повторить'),
-          ),
+          FilledButton(onPressed: onRetry, child: const Text('Повторить')),
         ],
       ),
     );

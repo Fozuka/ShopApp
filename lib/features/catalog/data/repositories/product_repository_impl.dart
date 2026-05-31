@@ -5,9 +5,7 @@ import '../datasources/product_remote_data_source.dart';
 class ProductRepositoryImpl implements ProductRepository {
   final ProductRemoteDataSource remoteDataSource;
 
-  const ProductRepositoryImpl({
-    required this.remoteDataSource,
-  });
+  const ProductRepositoryImpl({required this.remoteDataSource});
 
   @override
   Future<List<Product>> getProducts() async {

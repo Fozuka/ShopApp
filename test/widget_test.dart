@@ -5,11 +5,7 @@ import 'package:shop_app/app/electronics_shop_app.dart';
 
 void main() {
   testWidgets('app opens home page', (tester) async {
-    await tester.pumpWidget(
-      const ProviderScope(
-        child: ElectronicsShopApp(),
-      ),
-    );
+    await tester.pumpWidget(const ProviderScope(child: ElectronicsShopApp()));
 
     expect(find.text('Магазин электроники'), findsOneWidget);
     expect(find.text('TechStore'), findsOneWidget);

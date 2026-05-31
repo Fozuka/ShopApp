@@ -8,22 +8,26 @@ class ArticleSitesPage extends StatelessWidget {
   static const List<ArticleSite> sites = [
     ArticleSite(
       title: 'DNS Клуб',
-      description: 'Блог DNS с материалами про технику, комплектующие и электронику.',
+      description:
+          'Блог DNS с материалами про технику, комплектующие и электронику.',
       url: 'https://club.dns-shop.ru/blog/',
     ),
     ArticleSite(
       title: 'iXBT',
-      description: 'Новости и обзоры компьютерной техники, смартфонов и гаджетов.',
+      description:
+          'Новости и обзоры компьютерной техники, смартфонов и гаджетов.',
       url: 'https://www.ixbt.com/',
     ),
     ArticleSite(
       title: '3DNews',
-      description: 'Публикации о технологиях, железе, смартфонах и IT-индустрии.',
+      description:
+          'Публикации о технологиях, железе, смартфонах и IT-индустрии.',
       url: 'https://3dnews.ru/',
     ),
     ArticleSite(
       title: 'Mobile-Review',
-      description: 'Статьи, обзоры и новости о смартфонах и мобильной электронике.',
+      description:
+          'Статьи, обзоры и новости о смартфонах и мобильной электронике.',
       url: 'https://mobile-review.com/',
     ),
   ];

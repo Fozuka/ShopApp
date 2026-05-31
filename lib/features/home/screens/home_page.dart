@@ -27,14 +27,11 @@ class HomePage extends StatelessWidget {
                 SizedBox(height: 16),
                 Text(
                   'TechStore',
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: 8),
                 Text(
-                  'Смартфоны, ноутбуки, наушники и другие гаджеты с быстрой доставкой.',
+                  'Смартфоны, ноутбуки, планшеты и мобильные аксессуары с быстрой доставкой.',
                   style: TextStyle(fontSize: 16),
                 ),
               ],
@@ -43,28 +40,13 @@ class HomePage extends StatelessWidget {
           const SizedBox(height: 24),
           const Text(
             'Популярные категории',
-            style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
-          const CategoryCard(
-            icon: Icons.phone_android,
-            title: 'Смартфоны',
-          ),
-          const CategoryCard(
-            icon: Icons.laptop_mac,
-            title: 'Ноутбуки',
-          ),
-          const CategoryCard(
-            icon: Icons.headphones,
-            title: 'Аудиотехника',
-          ),
-          const CategoryCard(
-            icon: Icons.watch,
-            title: 'Смарт-часы',
-          ),
+          const CategoryCard(icon: Icons.phone_android, title: 'Смартфоны'),
+          const CategoryCard(icon: Icons.laptop_mac, title: 'Ноутбуки'),
+          const CategoryCard(icon: Icons.tablet_android, title: 'Планшеты'),
+          const CategoryCard(icon: Icons.headphones, title: 'Аксессуары'),
         ],
       ),
     );

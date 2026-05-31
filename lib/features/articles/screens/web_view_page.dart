@@ -5,10 +5,7 @@ import '../models/article_site.dart';
 class WebViewPage extends StatefulWidget {
   final ArticleSite site;
 
-  const WebViewPage({
-    super.key,
-    required this.site,
-  });
+  const WebViewPage({super.key, required this.site});
 
   @override
   State<WebViewPage> createState() => _WebViewPageState();
@@ -54,12 +51,8 @@ class _WebViewPageState extends State<WebViewPage> {
       body: Column(
         children: [
           if (loadingProgress < 100)
-            LinearProgressIndicator(
-              value: loadingProgress / 100,
-            ),
-          Expanded(
-            child: WebViewWidget(controller: controller),
-          ),
+            LinearProgressIndicator(value: loadingProgress / 100),
+          Expanded(child: WebViewWidget(controller: controller)),
         ],
       ),
     );

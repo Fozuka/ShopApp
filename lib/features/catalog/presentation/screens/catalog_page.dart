@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../../shared/widgets/product_card.dart';
 import '../../../../shared/widgets/shop_screen.dart';
+import '../../../cart/presentation/providers/cart_provider.dart';
 import '../../domain/entities/product.dart';
 import '../providers/catalog_providers.dart';
 import 'product_details_page.dart';
@@ -35,7 +36,16 @@ class CatalogPage extends ConsumerWidget {
                     imagePath: product.imageUrl,
                     title: product.title,
                     price: product.formattedPrice,
-                    onPressed: () => _openProductDetails(context, product),
+                    onTap: () => _openProductDetails(context, product),
+                    onPressed: () {
+                      ref.read(cartProvider.notifier).addProduct(product);
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('${product.title} добавлен в корзину'),
+                          duration: const Duration(seconds: 2),
+                        ),
+                      );
+                    },
                   ),
                 )
                 .toList(),
@@ -72,9 +82,7 @@ class _CatalogLoadingView extends StatelessWidget {
 class _CatalogErrorView extends StatelessWidget {
   final VoidCallback onRetry;
 
-  const _CatalogErrorView({
-    required this.onRetry,
-  });
+  const _CatalogErrorView({required this.onRetry});
 
   @override
   Widget build(BuildContext context) {
@@ -83,18 +91,12 @@ class _CatalogErrorView extends StatelessWidget {
       children: [
         const Text(
           'Не удалось загрузить товары',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.bold,
-          ),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8),
         const Text('Проверьте подключение к интернету и попробуйте снова.'),
         const SizedBox(height: 16),
-        FilledButton(
-          onPressed: onRetry,
-          child: const Text('Повторить'),
-        ),
+        FilledButton(onPressed: onRetry, child: const Text('Повторить')),
       ],
     );
   }
@@ -105,9 +107,6 @@ class _CatalogEmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'Список товаров пуст',
-      style: TextStyle(fontSize: 18),
-    );
+    return const Text('Список товаров пуст', style: TextStyle(fontSize: 18));
   }
 }

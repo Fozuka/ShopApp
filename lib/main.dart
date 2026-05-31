@@ -4,9 +4,5 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'app/electronics_shop_app.dart';
 
 void main() {
-  runApp(
-    const ProviderScope(
-      child: ElectronicsShopApp(),
-    ),
-  );
+  runApp(const ProviderScope(child: ElectronicsShopApp()));
 }

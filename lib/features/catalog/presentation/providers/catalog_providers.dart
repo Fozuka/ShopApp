@@ -12,10 +12,10 @@ final httpClientProvider = Provider<http.Client>((ref) {
   return client;
 });
 
-final productRemoteDataSourceProvider = Provider<ProductRemoteDataSource>((ref) {
-  return ProductRemoteDataSource(
-    client: ref.watch(httpClientProvider),
-  );
+final productRemoteDataSourceProvider = Provider<ProductRemoteDataSource>((
+  ref,
+) {
+  return ProductRemoteDataSource(client: ref.watch(httpClientProvider));
 });
 
 final productRepositoryProvider = Provider<ProductRepository>((ref) {
