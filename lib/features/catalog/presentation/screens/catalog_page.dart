@@ -9,14 +9,21 @@ import '../providers/catalog_providers.dart';
 import 'product_details_page.dart';
 
 class CatalogPage extends ConsumerWidget {
-  const CatalogPage({super.key});
+  final String? category;
+  final String? categoryTitle;
+
+  const CatalogPage({super.key, this.category, this.categoryTitle});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productsState = ref.watch(productsProvider);
 
+    final title = categoryTitle == null
+        ? 'Каталог электроники'
+        : 'Каталог: $categoryTitle';
+
     return ShopScreen(
-      title: 'Каталог электроники',
+      title: title,
       child: productsState.when(
         loading: () => const _CatalogLoadingView(),
         error: (error, stackTrace) => _CatalogErrorView(
@@ -25,12 +32,14 @@ class CatalogPage extends ConsumerWidget {
           },
         ),
         data: (products) {
-          if (products.isEmpty) {
+          final visibleProducts = _filterProducts(products);
+
+          if (visibleProducts.isEmpty) {
             return const _CatalogEmptyView();
           }
 
           return Column(
-            children: products
+            children: visibleProducts
                 .map(
                   (product) => ProductCard(
                     imagePath: product.imageUrl,
@@ -62,6 +71,18 @@ class CatalogPage extends ConsumerWidget {
         builder: (context) => ProductDetailsPage(productId: product.id),
       ),
     );
+  }
+
+  List<Product> _filterProducts(List<Product> products) {
+    final selectedCategory = category;
+
+    if (selectedCategory == null) {
+      return products;
+    }
+
+    return products
+        .where((product) => product.category == selectedCategory)
+        .toList();
   }
 }
 

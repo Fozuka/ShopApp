@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../catalog/presentation/screens/catalog_page.dart';
 import '../../../shared/widgets/category_card.dart';
 import '../../../shared/widgets/shop_screen.dart';
 
@@ -43,11 +44,51 @@ class HomePage extends StatelessWidget {
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 12),
-          const CategoryCard(icon: Icons.phone_android, title: 'Смартфоны'),
-          const CategoryCard(icon: Icons.laptop_mac, title: 'Ноутбуки'),
-          const CategoryCard(icon: Icons.tablet_android, title: 'Планшеты'),
-          const CategoryCard(icon: Icons.headphones, title: 'Аксессуары'),
+          CategoryCard(
+            icon: Icons.phone_android,
+            title: 'Смартфоны',
+            onTap: () => _openCategory(
+              context,
+              category: 'smartphones',
+              title: 'Смартфоны',
+            ),
+          ),
+          CategoryCard(
+            icon: Icons.laptop_mac,
+            title: 'Ноутбуки',
+            onTap: () =>
+                _openCategory(context, category: 'laptops', title: 'Ноутбуки'),
+          ),
+          CategoryCard(
+            icon: Icons.tablet_android,
+            title: 'Планшеты',
+            onTap: () =>
+                _openCategory(context, category: 'tablets', title: 'Планшеты'),
+          ),
+          CategoryCard(
+            icon: Icons.headphones,
+            title: 'Аксессуары',
+            onTap: () => _openCategory(
+              context,
+              category: 'mobile-accessories',
+              title: 'Аксессуары',
+            ),
+          ),
         ],
+      ),
+    );
+  }
+
+  void _openCategory(
+    BuildContext context, {
+    required String category,
+    required String title,
+  }) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            CatalogPage(category: category, categoryTitle: title),
       ),
     );
   }

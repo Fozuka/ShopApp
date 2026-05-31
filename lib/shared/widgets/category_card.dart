@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 class CategoryCard extends StatelessWidget {
   final IconData icon;
   final String title;
+  final VoidCallback? onTap;
 
-  const CategoryCard({super.key, required this.icon, required this.title});
+  const CategoryCard({
+    super.key,
+    required this.icon,
+    required this.title,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,6 +19,7 @@ class CategoryCard extends StatelessWidget {
         leading: Icon(icon, size: 36),
         title: Text(title),
         trailing: const Icon(Icons.chevron_right),
+        onTap: onTap,
       ),
     );
   }
