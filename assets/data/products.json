@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "iPhone 17 Pro",
+    "price": "129 990 ₽",
+    "imagePath": "assets/images/phone.png",
+    "description": "Флагманский смартфон Apple с мощным процессором, OLED-дисплеем и продвинутой камерой."
+  },
+  {
+    "id": 2,
+    "title": "MacBook Air M3",
+    "price": "289 990 ₽",
+    "imagePath": "assets/images/laptop.png",
+    "description": "Легкий ноутбук Apple на процессоре M3 для учебы, работы и повседневных задач."
+  },
+  {
+    "id": 3,
+    "title": "AirPods Pro",
+    "price": "24 990 ₽",
+    "imagePath": "assets/images/headphones.png",
+    "description": "Беспроводные наушники с активным шумоподавлением и качественным звучанием."
+  },
+  {
+    "id": 4,
+    "title": "Apple Watch Ultra",
+    "price": "39 990 ₽",
+    "imagePath": "assets/images/watch.png",
+    "description": "Умные часы Apple с прочным корпусом, большим экраном и расширенными спортивными функциями."
+  }
+]
